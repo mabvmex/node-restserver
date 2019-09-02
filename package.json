@@ -1,6 +1,9 @@
 {
   "name": "clase91-restserver",
   "version": "1.0.0",
+  "engines":{
+    "node": "12.6.0"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
