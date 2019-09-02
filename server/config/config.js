@@ -13,12 +13,12 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 // ===============
 
 let urlDB;
-// if(process.env.NODE_ENV === 'dev') {
-// urlDB = 'mongodb://localhost:27017/cafecito'; // Local
-// } else {
-urlDB = 'mongodb://mabvmex:123456a@ds227199.mlab.com:27199/cafe-db' // Remota
+if (process.env.NODE_ENV === 'dev') {
+    urlDB = 'mongodb://localhost:27017/cafecito'; // Local
+} else {
+    urlDB = process.env.MONGO_URI; // Remota
 
-// }
+}
 
 process.env.URLDB = urlDB;
 
