@@ -22,4 +22,17 @@ if (process.env.NODE_ENV === 'dev') {
 
 process.env.URLDB = urlDB;
 
-// mongodb+srv://mabvmex:<password>@cluster0-hpudi.mongodb.net/test
+// mongodb+srv://user:password@cluster0-hpudi.mongodb.net/test
+
+// ===============
+// Token
+// ===============
+process.env.CADUCIDAD_TOKEN = '30 days' // 60 * 60 * 24 * 30;
+process.env.SEED = process.env.SEED || 'confidential-en-desarrollo'
+
+// let lockToken;
+// if (process.env.SEED === 'confidencial-en-desarrollo') {
+//     lockToken = 'confidencial-en-desarrollo'
+// } else {
+//     lockToken = process.env.SEED;
+// }
