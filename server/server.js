@@ -4,14 +4,17 @@ require('colors');
 const express = require('express')
 const mongoose = require('mongoose');
 const app = express();
-const bodyParser = require('body-parser');
+const bodyParser = require ('body-parser');
+const path = require('path');
 
-app.use(bodyParser.urlencoded({
-    extended: false
-})) // parse applicacation/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false })) // parse applicacation/x-www-form-urlencoded
 app.use(bodyParser.json()) // parse aplication/json
-app.use(require('./routes/index')); // Configuración global de rutas
 
+// Middleware para habilitar la carpeta publica
+app.use(express.static(path.resolve(__dirname, '../public'))); // console.log(path.resolve(__dirname, '../public'))
+
+// Configuración global de rutas
+app.use(require('./routes/index')); 
 
 // Se agrega el "useNewUrlParser: true" porqué la función de conexión está marcada como deprecada si no se usa de está manera.
 // new parser, pass option { useNewUrlParser: true } to MongoClient.connect.

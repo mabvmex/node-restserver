@@ -36,3 +36,8 @@ process.env.SEED = process.env.SEED || 'confidential-en-desarrollo'
 // } else {
 //     lockToken = process.env.SEED;
 // }
+
+// ===============
+// Google Client ID
+// ===============
+process.env.CLIENT_ID = process.env.CLIENT_ID || '959320581333-qkn91n5c6t0cv1momoi6jd1q0mv3q2e3.apps.googleusercontent.com'
