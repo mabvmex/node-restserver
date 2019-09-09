@@ -17,21 +17,19 @@ app.get('/usuario', verificarToken, (req, res) => {
     let limite = req.query.limite || 5;
     limite = Number(limite);
 
-    Usuario.find({
-            estado: true
-        }, 'nombre email role estado google img')
+    Usuario.find({ estado: true }, 'nombre email role estado google img')
         .skip(desde)
         .limit(limite)
-        .exec((e, usuarios) => {
-            if (e) {
+        .exec((err, usuarios) => {
+            if (err) {
                 return res.status(400).json({
                     ok: false,
-                    e
+                    err
                 });
             }
             Usuario.count({
                 estado: true
-            }, (e, conteo) => { //cuenta registros
+            }, (err, conteo) => { //cuenta registros
 
                 res.json({
                     ok: true,
@@ -58,11 +56,11 @@ app.post('/usuario', [verificarToken, verificarAdmin_Role], function (req, res) 
         role: body.role
     });
 
-    usuario.save((e, usuarioDB) => {
-        if (e) {
+    usuario.save((err, usuarioDB) => {
+        if (err) {
             return res.status(400).json({
                 ok: false,
-                e
+                err
             });
         }
         // usuario.password = null;
@@ -98,8 +96,6 @@ app.put('/usuario/:id', [verificarToken, verificarAdmin_Role], function (req, re
             ok: true,
             usuario: usuarioDB,
         });
-
-
     });
 });
 
@@ -112,12 +108,8 @@ app.delete('/usuario/:id', [verificarToken, verificarAdmin_Role], function (req,
     let id = req.params.id;
     // *** Código comentado (2) ***
 
-    let cambioEstado = {
-        estado: false
-    }
-    Usuario.findByIdAndUpdate(id, cambioEstado, {
-        new: true
-    }, (err, usuarioEliminado) => {
+    let cambioEstado = { estado: false }
+    Usuario.findByIdAndUpdate(id, cambioEstado, { new: true }, (err, usuarioEliminado) => {
         if (err) {
             return res.status(400).json({
                 ok: false,

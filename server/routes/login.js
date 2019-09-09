@@ -6,6 +6,10 @@ const client = new OAuth2Client(process.env.CLIENT_ID);
 const Usuario = require('../models/usuario');
 const app = express();
 
+
+// ===============
+// Login Normal
+// ===============
 app.post('/login', (req, res) => {
 
     let body = req.body;
@@ -50,7 +54,10 @@ app.post('/login', (req, res) => {
 
 });
 
+
+// ===============
 // Configuraciones de google
+// ===============
 async function verify(token) {
     const ticket = await client.verifyIdToken({
         idToken: token,
@@ -69,6 +76,10 @@ async function verify(token) {
     }
 }
 
+
+// ===============
+// Login con Google
+// ===============
 app.post('/google', async (req, res) => {
 
     let token = req.body.idtoken;
